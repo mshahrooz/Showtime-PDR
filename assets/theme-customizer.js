@@ -67,7 +67,7 @@
   function textOn(hex) {
     // Choose text according to WCAG contrast against the chosen background.
     var l = luminance(hex);
-    return (l + 0.05) / 0.05 >= 1.05 / (l + 0.05) ? '#FFFFFF' : '#17203A';
+    return 1.05 / (l + 0.05) >= (l + 0.05) / 0.05 ? '#FFFFFF' : '#17203A';
   }
 
   function read() {
