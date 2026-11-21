@@ -33,12 +33,23 @@ jobs:
         uses: actions/checkout@v4
       - name: Build six pages with shared components
         run: python3 scripts/build_site.py
+      - name: Validate theme JavaScript and all six generated pages
+        run: |
+          node --check assets/theme-customizer.js
+          python3 -m py_compile scripts/build_site.py
+          for page in index.html about.html services.html gallery.html reviews.html contact.html; do
+            test -f "_site/$page"
+            grep -q 'data-theme-customizer' "_site/$page"
+            grep -q 'assets/theme-customizer.js' "_site/$page"
+          done
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
+      - name: Allow deployment artifact to register
+        run: sleep 8
       - name: Publish
         id: deployment
         uses: actions/deploy-pages@v4

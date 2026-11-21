@@ -109,6 +109,26 @@
       '--theme-on-primary': textOn(color),
       '--theme-on-hover': textOn(hover)
     };
+    // Preserve the exact existing Showtime palette until a different color is chosen.
+    if (color === DEFAULT) {
+      Object.assign(vars, {
+        '--theme-hover': '#135783',
+        '--theme-navy': '#092D45',
+        '--theme-navy-light': '#144E72',
+        '--theme-950': '#072A41',
+        '--theme-900': '#0E3A58',
+        '--theme-800': '#14527B',
+        '--theme-600': '#2083C6',
+        '--theme-sky': '#A0D2F3',
+        '--theme-sky-secondary': '#8FC8EF',
+        '--theme-mid': '#7DB8DF',
+        '--theme-line': '#AECBE3',
+        '--theme-line-strong': '#C3D8EA',
+        '--theme-pale': '#E9F3FA',
+        '--theme-100': '#D6E9F5',
+        '--theme-50': '#EFF6FB'
+      });
+    }
     Object.keys(vars).forEach(function (name) { root.style.setProperty(name, vars[name]); });
     root.classList.toggle('st-theme--light', textOn(color) !== '#FFFFFF');
     var meta = document.querySelector('meta[name="theme-color"]');
