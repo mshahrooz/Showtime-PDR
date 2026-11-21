@@ -1,0 +1,30 @@
+<!-- Shared, visitor-facing Showtime color customizer. -->
+<div class="st-theme-customizer" data-theme-customizer>
+  <button class="st-theme-toggle" type="button" data-theme-toggle aria-expanded="false" aria-controls="showtime-theme-panel" aria-label="Customize website color" title="Customize website color">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.3a2.1 2.1 0 0 0 1.4-3.7 1.9 1.9 0 0 1 1.4-3.3H17a4 4 0 0 0 4-4A9 9 0 0 0 12 3Z"/><circle cx="7.6" cy="11" r="1"/><circle cx="10.2" cy="7.2" r="1"/><circle cx="15" cy="7.4" r="1"/><circle cx="17.6" cy="11" r="1"/></svg>
+    <span>Theme color</span>
+  </button>
+  <section class="st-theme-panel" id="showtime-theme-panel" data-theme-panel aria-label="Customize site colors" hidden>
+    <div class="st-theme-head">
+      <div><strong>Customize your color</strong><p>Preview changes across the entire website.</p></div>
+      <button type="button" class="st-theme-close" data-theme-close aria-label="Close color customizer">&times;</button>
+    </div>
+    <label class="st-theme-label" for="showtime-theme-hex">CHOOSE ANY COLOR</label>
+    <div class="st-theme-inputs">
+      <input type="color" class="st-theme-picker" data-theme-picker value="#1a6aa0" aria-label="Select brand color">
+      <input type="text" class="st-theme-hex" id="showtime-theme-hex" data-theme-hex value="#1A6AA0" maxlength="7" spellcheck="false" autocomplete="off" aria-label="Enter a hexadecimal color">
+    </div>
+    <div class="st-theme-label">QUICK COLORS</div>
+    <div class="st-theme-presets" role="group" aria-label="Suggested theme colors">
+      <button type="button" class="st-theme-swatch" data-theme-preset="#1A6AA0" style="--st-swatch:#1a6aa0" aria-label="Showtime blue" aria-pressed="true"></button>
+      <button type="button" class="st-theme-swatch" data-theme-preset="#0B807C" style="--st-swatch:#0b807c" aria-label="Teal" aria-pressed="false"></button>
+      <button type="button" class="st-theme-swatch" data-theme-preset="#26734D" style="--st-swatch:#26734d" aria-label="Forest green" aria-pressed="false"></button>
+      <button type="button" class="st-theme-swatch" data-theme-preset="#663399" style="--st-swatch:#663399" aria-label="Purple" aria-pressed="false"></button>
+      <button type="button" class="st-theme-swatch" data-theme-preset="#A23F64" style="--st-swatch:#a23f64" aria-label="Rose" aria-pressed="false"></button>
+      <button type="button" class="st-theme-swatch" data-theme-preset="#B45F27" style="--st-swatch:#b45f27" aria-label="Copper" aria-pressed="false"></button>
+      <button type="button" class="st-theme-swatch" data-theme-preset="#364B68" style="--st-swatch:#364b68" aria-label="Slate" aria-pressed="false"></button>
+    </div>
+    <p class="st-theme-feedback" data-theme-feedback role="status" aria-live="polite">Your choice will be saved in this browser.</p>
+    <button type="button" class="st-theme-reset" data-theme-reset>Reset to original blue</button>
+  </section>
+</div>

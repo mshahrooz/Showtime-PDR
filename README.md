@@ -25,3 +25,26 @@ Run `python3 scripts/build_site.py`, then open `_site/index.html`. No framework 
 ## Estimate form limitation
 
 The current Contact form uses **Netlify Forms**. GitHub Pages does not process Netlify form submissions. The form needs a compatible form endpoint or service before estimate requests can be received. Do not rely on the current form for live lead delivery until configured.
+
+
+## Theme color customizer
+
+Every published page has a floating **Theme color** control at the bottom left.
+Visitors can use the color picker, enter any hexadecimal color (for example
+`#26734D`), or select one of seven presets. Changes update the top bar,
+footer, buttons, and coordinating blue tones live, across all six pages.
+The selected color is saved in their browser and follows them between pages.
+**This preference does not change the theme for other visitors.**
+
+To change the site's default color for **all** new visitors, edit the
+`DEFAULT` value near the top of **`assets/theme-customizer.js`**
+and commit that file. Visitors who already picked a custom color keep their
+own preference until they click **Reset to original blue**.
+
+Design and logic live in just three shared files:
+- `components/theme-customizer.html` — visual control
+- `assets/theme-customizer.css` — customizer styling and contrast
+- `assets/theme-customizer.js` — color calculations, preview, and storage
+
+The build changes color tokens in generated CSS only, and does not modify
+customer photos, page copy, animations, source page files, or other services.

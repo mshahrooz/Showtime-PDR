@@ -1,0 +1,43 @@
+/* Theme customizer: independent of existing page animations and layouts. */
+.st-theme-customizer { position: fixed; inset: auto auto max(18px, env(safe-area-inset-bottom)) 18px; z-index: 1050; font: 500 14px/1.45 Manrope, system-ui, sans-serif; color: #17203a; }
+.st-theme-customizer *, .st-theme-customizer *::before, .st-theme-customizer *::after { box-sizing: border-box; }
+.st-theme-customizer button { cursor: pointer; font: inherit; }
+.st-theme-toggle { display:flex; align-items:center; gap:9px; padding: 12px 17px; min-height:48px; background:#ffffff; color:#17203a; border:1px solid #d4dce5; border-radius:100px; box-shadow:0 7px 28px rgba(7,31,53,.2); font-weight:750!important; transition: transform .22s, box-shadow .22s; }
+.st-theme-toggle svg { width:21px; height:21px; stroke:var(--theme-primary,#1a6aa0); }
+.st-theme-toggle:hover { transform:translateY(-3px); box-shadow:0 11px 34px rgba(7,31,53,.24); }
+.st-theme-toggle:focus-visible, .st-theme-panel :focus-visible { outline:3px solid var(--theme-primary,#1a6aa0); outline-offset:3px; }
+.st-theme-panel { position:absolute; left:0; bottom:calc(100% + 13px); width:min(350px, calc(100vw - 36px)); max-height:min(72vh, 590px); overflow:auto; border:1px solid #dce4ed; border-radius:15px; background:#fff; color:#17203a; padding:20px; box-shadow:0 24px 75px rgba(11,29,51,.25); }
+.st-theme-panel[hidden] { display:none!important; }
+.st-theme-head { display:flex; gap:15px; align-items:flex-start; justify-content:space-between; padding-bottom:13px; border-bottom:1px solid #e8eef3; margin-bottom:16px; }
+.st-theme-head strong {display:block; font:750 18px/1.3 Manrope,system-ui,sans-serif; color:#132a40}
+.st-theme-head p {margin:5px 0 0; font:500 12px/1.5 Manrope,system-ui,sans-serif; color:#64758a}
+.st-theme-close { border:0; background:#f0f4f8; border-radius:50%; color:#152c42; width:29px; height:29px; font-size:21px!important; line-height:1; display:grid; place-items:center; }
+.st-theme-label {display:block; color:#24384d; font-size:12px; font-weight:800; letter-spacing:.05em; margin-bottom:10px}
+.st-theme-inputs {display:flex; align-items:center; gap:10px; margin-bottom:20px}
+.st-theme-picker { width:57px!important; height:45px!important; padding:3px!important; cursor:pointer; border:1px solid #cad5e2!important; border-radius:8px!important; background:#fff!important; }
+.st-theme-hex { flex:1; min-width:0; height:45px!important; padding:10px 12px!important; border:1px solid #cad5e2!important; border-radius:7px!important; color:#17203a!important; background:#fff!important; font:650 15px Manrope,system-ui,sans-serif!important; text-transform:uppercase; }
+.st-theme-hex[aria-invalid=true] {border-color:#b42829!important}
+.st-theme-presets {display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:16px}
+.st-theme-swatch {aspect-ratio:1; display:grid; place-items:center; padding:0!important; border:3px solid #fff!important; border-radius:50%!important; background:var(--st-swatch)!important; box-shadow:0 0 0 1px #bcc8d4; transition: transform .2s, box-shadow .2s; }
+.st-theme-swatch:hover {transform:scale(1.12)}
+.st-theme-swatch[aria-pressed=true] {box-shadow:0 0 0 2.5px #17203a}
+.st-theme-swatch[aria-pressed=true]::after {content:'✓'; font:900 15px Manrope,system-ui,sans-serif; color:#fff; text-shadow:0 1px 4px #0009}
+.st-theme-feedback {min-height:30px; margin:0 0 8px!important; font-size:12px!important; line-height:1.5!important; color:#64758a!important}
+.st-theme-reset {display:block; width:100%; padding:11px 12px!important; background:#f3f6f9!important; color:#213b52!important; border:1px solid #dce4ec!important; border-radius:8px!important; font-weight:750!important; transition:background .2s}
+.st-theme-reset:hover {background:#e8eef5!important}
+.st-theme-customizer .st-theme-sr {position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+@media(max-width:560px) {
+  .st-theme-customizer {left:12px; bottom:max(13px, env(safe-area-inset-bottom))}
+  .st-theme-toggle {min-height:45px; padding:11px 13px; font-size:12px}
+  .st-theme-panel {padding:17px; width:min(340px,calc(100vw - 24px))}
+}
+/* Preserve readable navigation/footer/CTA text when visitors select very light colors. */
+html.st-theme--light .topbar, html.st-theme--light .topbar :is(a,span,.icon),
+html.st-theme--light .footer, html.st-theme--light .footer :is(a,p,h2,.brand,.brand svg),
+html.st-theme--light .review-cta, html.st-theme--light .review-cta :is(h2,p),
+html.st-theme--light .button--primary, html.st-theme--light .round-icon {
+  color:var(--theme-on-primary,#17203a)!important;
+}
+html.st-theme--light .button--primary:hover, html.st-theme--light .button--outline:hover {
+  color:var(--theme-on-hover,#17203a)!important;
+}
