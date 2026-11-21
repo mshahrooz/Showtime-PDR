@@ -8,7 +8,11 @@ if [[ -s "$target/hero-desktop.mp4" && -s "$target/hero-mobile.mp4" && -s "$targ
   echo "Optimized hero media restored from cache."
   exit 0
 fi
-command -v ffmpeg >/dev/null 2>&1 || { echo "ffmpeg required on the runner" >&2; exit 1; }
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  echo "Installing ffmpeg on the GitHub runner..."
+  sudo apt-get update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq ffmpeg
+fi
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 url="https://videos.pexels.com/video-files/4281335/4281335-hd_1280_720_24fps.mp4"
