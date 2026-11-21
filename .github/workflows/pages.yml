@@ -48,6 +48,7 @@ jobs:
           node --check assets/site-motion.js
           grep -q 'data-hero-video-toggle' _site/index.html
           grep -q 'hero-video.js?v=2' _site/index.html
+          grep -q 'hero-cleanup.css?v=1' _site/index.html
           grep -q 'site-motion.js?v=1' _site/index.html
           grep -q 'site-motion.js?v=1' _site/contact.html
           python3 -m py_compile scripts/build_site.py

@@ -148,7 +148,7 @@ for filename in PAGES:
     html = html.replace('</body>', THEME_COMPONENT + '\n</body>', 1)
     if filename == 'index.html':
         html = add_homepage_video(html)
-        html = html.replace('</head>', '  <link rel="stylesheet" href="assets/hero-video.css?v=2">\n  <script src="assets/hero-video.js?v=2" defer></script>\n</head>', 1)
+        html = html.replace('</head>', '  <link rel="stylesheet" href="assets/hero-video.css?v=2">\n  <link rel="stylesheet" href="assets/hero-cleanup.css?v=1">\n  <script src="assets/hero-video.js?v=2" defer></script>\n</head>', 1)
     if html.count('</head>') != 1:
         raise ValueError(f'{filename}: head closing tag missing')
     html = html.replace('</head>', '  <link rel="stylesheet" href="assets/logo.css">\n  <link rel="stylesheet" href="assets/site-motion.css?v=1">\n  <script src="assets/site-motion.js?v=1" defer></script>\n</head>', 1)
