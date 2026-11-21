@@ -78,7 +78,7 @@ def add_homepage_video(html):
         raise ValueError('Home: slideshow control not found')
     video_control = ('<button type="button" class="showtime-video-toggle control" '
                      'data-hero-video-toggle aria-label="Play background video" '
-                     'title="Play background video" aria-pressed="false">'
+                     'aria-pressed="false">'
                      '<svg class="icon" viewBox="0 0 24 24" fill="none" '
                      'stroke="currentColor" stroke-width="1.8" '
                      'aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>'
@@ -151,7 +151,7 @@ for filename in PAGES:
         html = html.replace('</head>', '  <link rel="stylesheet" href="assets/hero-video.css?v=2">\n  <script src="assets/hero-video.js?v=2" defer></script>\n</head>', 1)
     if html.count('</head>') != 1:
         raise ValueError(f'{filename}: head closing tag missing')
-    html = html.replace('</head>', '  <link rel="stylesheet" href="assets/logo.css">\n</head>', 1)
+    html = html.replace('</head>', '  <link rel="stylesheet" href="assets/logo.css">\n  <link rel="stylesheet" href="assets/site-motion.css?v=1">\n  <script src="assets/site-motion.js?v=1" defer></script>\n</head>', 1)
     (DEST / filename).write_text(html, encoding='utf-8')
     print('Built', filename)
 

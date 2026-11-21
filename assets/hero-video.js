@@ -25,7 +25,7 @@
       button.innerHTML = playing ? iconPause : iconPlay;
       const text = playing ? 'Pause background video' : 'Play background video';
       button.setAttribute('aria-label', text);
-      button.setAttribute('title', text);
+      button.removeAttribute('title');
       button.setAttribute('aria-pressed', String(playing));
       button.classList.toggle('needs-play', !playing);
     };
@@ -82,7 +82,7 @@
           video.load();
           play();
         } else {
-          button.title = 'Video could not load. Click to retry.';
+          button.removeAttribute('title');
           paintButton();
         }
       }
