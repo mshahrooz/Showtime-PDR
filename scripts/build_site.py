@@ -85,8 +85,13 @@ def add_homepage_video(html):
         raise ValueError('Home: hero slide data missing')
     # Homepage cards now open their exact service detail on services.html.
     for service in ('door-dings','dents-creases','hail-damage','minor-impact'):
-        pattern = r'(<a class="learn"\s+data-estimate-kind="' + service + r'"\s+href=")#estimate-form(")'
-        html, count = re.subn(pattern, r'\g<1>services.html#' + service + r'\2', html, count=1)
+        pattern = r'<a\b[^>]*\bdata-estimate-kind="' + service + r'"[^>]*>'
+        def change_link(match):
+            tag, count = re.subn(r'href="#estimate-form"', 'href="services.html#' + service + '"', match.group(0), count=1)
+            if count != 1:
+                raise ValueError(f'Home: missing href in Learn More for {service}')
+            return tag
+        html, count = re.subn(pattern, change_link, html, count=1)
         if count != 1:
             raise ValueError(f'Home: missing Learn More for {service}')
     # Original homepage calls to action remain functional after navigation changes.
