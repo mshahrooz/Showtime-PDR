@@ -7,6 +7,7 @@ on:
       - '*.html'
       - 'components/**'
       - 'scripts/build_site.py'
+      - 'scripts/prepare_hero_video.sh'
       - '.github/workflows/pages.yml'
       - 'assets/**'
       - 'css/**'
@@ -31,6 +32,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Restore optimized hero media from build cache
+        uses: actions/cache@v4
+        with:
+          path: assets/hero-media
+          key: showtime-hero-4281335-v2
+      - name: Prepare compressed responsive background video
+        run: bash scripts/prepare_hero_video.sh
       - name: Build six pages with shared components
         run: python3 scripts/build_site.py
       - name: Validate theme JavaScript and all six generated pages

@@ -1,0 +1,7 @@
+/* Shared crisp logo image in navigation, mobile menu, and footer. */
+.header .brand > .showtime-logo-image {display:block;width:clamp(170px,19vw,234px);height:auto;max-height:64px;object-fit:contain}
+.menu .brand > .showtime-logo-image {display:block;width:min(215px,62vw);height:auto;max-height:64px;object-fit:contain}
+.footer .brand > .showtime-logo-image {display:block;width:min(268px,100%);height:auto;object-fit:contain}
+.header .brand:has(.showtime-logo-image),.menu .brand:has(.showtime-logo-image),.footer .brand:has(.showtime-logo-image){line-height:1;flex:0 0 auto}
+@media(max-width:1050px){.header .brand > .showtime-logo-image{width:185px}}
+@media(max-width:420px){.header .brand > .showtime-logo-image{width:168px}}

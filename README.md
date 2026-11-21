@@ -48,3 +48,19 @@ Design and logic live in just three shared files:
 
 The build changes color tokens in generated CSS only, and does not modify
 customer photos, page copy, animations, source page files, or other services.
+
+## Linked pages, video hero and illustrated logo
+The main and footer menus now use the six real `.html` page URLs. Homepage service
+cards link directly to their matching sections on `services.html`. The existing
+three-slide text carousel remains, but its visual layer is now one persistent,
+muted, looping video, which **does not restart when slides change**.
+
+The GitHub Pages workflow uses `scripts/prepare_hero_video.sh` to retrieve the
+customer-supplied stock clip by its Pexels file ID, verify its SHA-256, create
+a ~1 MB desktop H.264 MP4, a ~400 KB mobile MP4, and a small poster.
+Build cache avoids downloading or transcoding again on routine page edits.
+The site runs from self-hosted video files in `_site/assets/hero-media/`.
+The source HTML pages and repair gallery images are not overwritten.
+
+Shared vector logo image assets are `assets/showtime-logo.svg` (navigation)
+and `assets/showtime-logo-light.svg` (footer).
