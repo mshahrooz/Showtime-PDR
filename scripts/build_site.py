@@ -151,7 +151,20 @@ for filename in PAGES:
         html = html.replace('</head>', '  <link rel="stylesheet" href="assets/hero-video.css?v=2">\n  <link rel="stylesheet" href="assets/hero-cleanup.css?v=1">\n  <script src="assets/hero-video.js?v=2" defer></script>\n</head>', 1)
     if html.count('</head>') != 1:
         raise ValueError(f'{filename}: head closing tag missing')
-    html = html.replace('</head>', '  <link rel="stylesheet" href="assets/logo.css">\n  <link rel="stylesheet" href="assets/site-motion.css?v=1">\n  <script src="assets/site-motion.js?v=1" defer></script>\n</head>', 1)
+    html = html.replace('</head>', '  <link rel="stylesheet" href="assets/logo.css">\n  <link rel="stylesheet" href="assets/site-motion.css?v=3">\n  <script src="assets/site-motion.js?v=3" defer></script>\n</head>', 1)
+    # Each original page embeds an obsolete data-URL favicon. Replace it with
+    # the same crisp, shared SVG mark used by the new Showtime logo.
+    html, removed_icon = re.subn(
+        r'<link\s+rel="icon"\s+type="image/svg\+xml"\s+href="data:image/svg\+xml;base64,[^"]+"\s*/?>',
+        '', html, count=1, flags=re.I
+    )
+    if removed_icon != 1:
+        raise ValueError(f'{filename}: old favicon not found')
+    html = html.replace(
+        '</head>',
+        '  <link rel="icon" type="image/svg+xml" href="assets/showtime-favicon.svg?v=3">\n'
+        '  <link rel="shortcut icon" href="assets/showtime-favicon.svg?v=3">\n</head>', 1
+    )
     (DEST / filename).write_text(html, encoding='utf-8')
     print('Built', filename)
 

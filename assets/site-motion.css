@@ -1,31 +1,24 @@
-/* Shared, unobtrusive motion layer for all six pages; loaded after page CSS. */
-html.st-motion-ready .st-motion-pending:not(.st-motion-visible) {
+/* Showtime shared animation v3 — loaded on every page, after original CSS. */
+html.st-force-motion .st-force-staged {
   opacity: 0 !important;
+  will-change: opacity, translate;
 }
-html.st-motion-ready main .reveal.st-motion-pending {
-  transition: none !important; /* JS provides consistent reveal instead of competing transitions. */
-}
-html.st-motion-ready .st-motion-visible {
+html.st-force-motion .st-force-visible {
   opacity: 1 !important;
 }
-@media (prefers-reduced-motion: reduce) {
-  /* Respect accessibility preferences: reveal immediately without movement. */
-  html.st-motion-ready .st-motion-pending,
-  html.st-motion-ready .st-motion-visible {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition-duration: .01ms !important;
-  }
+html.st-force-motion .st-force-complete {
+  opacity: 1 !important;
+  will-change: auto;
 }
-/* Refined visual feedback for non-touch pointers, without interfering with layouts. */
 @media (hover: hover) and (pointer: fine) {
-  main :is(.rev-card, .service-card, .review-card, .process-card, .value-card, .gal-item, .gcard) {
-    transition: box-shadow .3s cubic-bezier(.22,.7,.2,1);
+  main :is(.service-card,.value-card,.owner-card,.rev-card,.review-card,
+            .gal-item,.step-card,.process-card,.google-card,.photo-panel) {
+    transition: box-shadow .35s cubic-bezier(.2,.7,.22,1);
   }
-  main :is(.rev-card, .service-card, .review-card, .process-card, .value-card, .gal-item, .gcard):hover {
-    box-shadow: 0 22px 52px rgba(12, 44, 69, .15);
+  main :is(.service-card,.value-card,.owner-card,.rev-card,.review-card,
+            .gal-item,.step-card,.process-card,.google-card,.photo-panel):hover {
+    box-shadow: 0 20px 48px rgba(8,36,63,.16);
   }
 }
-/* Banner images retain their existing overlays and layout. */
-main .page-banner { isolation: isolate; }
+/* Even when a user requests reduced motion, gently fade in elements
+   rather than leaving any existing stylesheet reveal stuck at zero opacity. */

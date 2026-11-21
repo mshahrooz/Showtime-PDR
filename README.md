@@ -64,3 +64,22 @@ The source HTML pages and repair gallery images are not overwritten.
 
 Shared vector logo image assets are `assets/showtime-logo.svg` (navigation)
 and `assets/showtime-logo-light.svg` (footer).
+
+## Shared favicon and force-activated scroll animations (November 2026)
+
+All six pages use `assets/showtime-favicon.svg` (a recognizable square
+Showtime car-and-swoosh mark, derived from the new header logo). Existing
+embedded legacy SVG favicons are replaced during the publishing build.
+
+The shared `assets/site-motion.js` and `assets/site-motion.css` now
+animate **real elements** on every page: banners, page headings, cards,
+testimonials, images, service content, contact sections, and footer columns.
+The engine sets inline high-priority opacity/offset/transition styles to
+survive page-specific older `!important` animation rules. It also uses both
+IntersectionObserver and a scroll/resize fallback so content appears as it
+comes into view. Original content and slider interactions remain unchanged.
+A reduced-motion setting produces a shorter fade-only reveal.
+
+Edit these shared files once to change animations or the favicon across the
+entire published website. `scripts/build_site.py` keeps the original source
+pages untouched and assembles the changes in `_site/` for GitHub Pages.
