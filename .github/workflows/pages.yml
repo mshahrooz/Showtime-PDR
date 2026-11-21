@@ -44,6 +44,9 @@ jobs:
       - name: Validate theme JavaScript and all six generated pages
         run: |
           node --check assets/theme-customizer.js
+          node --check assets/hero-video.js
+          grep -q 'data-hero-video-toggle' _site/index.html
+          grep -q 'hero-video.js?v=2' _site/index.html
           python3 -m py_compile scripts/build_site.py
           for page in index.html about.html services.html gallery.html reviews.html contact.html; do
             test -f "_site/$page"

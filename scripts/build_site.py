@@ -58,10 +58,11 @@ def add_homepage_video(html):
     start = html.index('<div class="hero-visuals">')
     end = html.index('<div class="shell hero-inner">', start)
     visual = '''<div class="hero-visuals">
-    <video class="showtime-hero-video" autoplay muted loop playsinline webkit-playsinline preload="metadata"
-           poster="assets/hero-media/hero-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="assets/hero-media/hero-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
-      <source src="assets/hero-media/hero-desktop.mp4" type="video/mp4">
+    <video class="showtime-hero-video" data-mobile-src="assets/hero-media/hero-mobile.mp4?v=2"
+           data-desktop-src="assets/hero-media/hero-desktop.mp4?v=2"
+           autoplay muted loop playsinline webkit-playsinline preload="auto"
+           poster="assets/hero-media/hero-poster.jpg?v=2" aria-label="Silent background video of a car">
+      <source src="assets/hero-media/hero-desktop.mp4?v=2" type="video/mp4">
     </video>
     <div class="hero-photo current" data-hero-image aria-hidden="true"></div>
     <div class="hero-photo" data-hero-image aria-hidden="true"></div>
@@ -70,6 +71,19 @@ def add_homepage_video(html):
   '''
     html = html[:start] + visual + html[end:]
     html = html.replace('<strong>Actual Showtime repair</strong>', '<strong>Showtime PDR</strong>', 1)
+    # This optional independent control offers a real user gesture if autoplay is blocked.
+    # It sits alongside (not inside) the slideshow's existing pause control.
+    old = '<button type="button" class="hero-toggle control" data-hero-toggle'
+    if html.count(old) != 1:
+        raise ValueError('Home: slideshow control not found')
+    video_control = ('<button type="button" class="showtime-video-toggle control" '
+                     'data-hero-video-toggle aria-label="Play background video" '
+                     'title="Play background video" aria-pressed="false">'
+                     '<svg class="icon" viewBox="0 0 24 24" fill="none" '
+                     'stroke="currentColor" stroke-width="1.8" '
+                     'aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>'
+                     '</button>')
+    html = html.replace(old, video_control + old, 1)
     # The slide buttons keep changing text, but no handler touches/restarts the video.
     pattern = r'(<script\s+type="application/json"\s+data-hero-data>)(.*?)(</script>)'
     def update_slides(match):
@@ -134,7 +148,7 @@ for filename in PAGES:
     html = html.replace('</body>', THEME_COMPONENT + '\n</body>', 1)
     if filename == 'index.html':
         html = add_homepage_video(html)
-        html = html.replace('</head>', '  <link rel="stylesheet" href="assets/hero-video.css">\n</head>', 1)
+        html = html.replace('</head>', '  <link rel="stylesheet" href="assets/hero-video.css?v=2">\n  <script src="assets/hero-video.js?v=2" defer></script>\n</head>', 1)
     if html.count('</head>') != 1:
         raise ValueError(f'{filename}: head closing tag missing')
     html = html.replace('</head>', '  <link rel="stylesheet" href="assets/logo.css">\n</head>', 1)
